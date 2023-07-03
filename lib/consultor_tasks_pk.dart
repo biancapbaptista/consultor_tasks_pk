@@ -2,80 +2,45 @@ library consultor_tasks_pk;
 
 import 'package:flutter/material.dart';
 
-class CustomBarWidget extends StatelessWidget {
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+class CustomBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  final double height;
+
+  const CustomBarWidget({
+    required Key key,
+    required this.height,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: Container(
-        height: 160.0,
-        child: Stack(
-          children: <Widget>[
-            Container(
-              color: Colors.red,
-              width: MediaQuery.of(context).size.width,
-              height: 100.0,
-              child: const Center(
-                child: Text(
-                  "Home",
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 80.0,
-              left: 0.0,
-              right: 0.0,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1.0),
-                      border: Border.all(
-                          color: Colors.grey.withOpacity(0.5), width: 1.0),
-                      color: Colors.white),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.menu,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          _scaffoldKey.currentState?.openDrawer();
-                        },
-                      ),
-                      const Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: "Search",
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.notifications,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
+    return Column(
+      children: [
+        Container(
+          color: Colors.grey[300],
+          child: Padding(
+            padding: EdgeInsets.all(30),
+            child: AppBar(
+              title: Container(
+                color: Colors.white,
+                child: const TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    contentPadding: EdgeInsets.all(10),
                   ),
                 ),
               ),
-            )
-          ],
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.verified_user),
+                  onPressed: () => null,
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
 }
