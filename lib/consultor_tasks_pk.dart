@@ -17,7 +17,7 @@ class CustomBarWidget extends StatelessWidget implements PreferredSizeWidget {
         Container(
           color: Colors.grey[300],
           child: Padding(
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(20),
             child: AppBar(
               title: Container(
                 color: Colors.white,
@@ -30,7 +30,7 @@ class CustomBarWidget extends StatelessWidget implements PreferredSizeWidget {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.verified_user),
+                  icon: const Icon(Icons.search),
                   onPressed: () => null,
                 ),
               ],
