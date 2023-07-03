@@ -15,17 +15,18 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: onPressed,
-        style: TextButton.styleFrom(
-          padding: const EdgeInsets.all(16.0),
-          primary: Colors.white,
-          backgroundColor: Colors.blue,
-          elevation: 9.0,
-          textStyle: const TextStyle(
-            fontSize: 20,
-          ),
+    return IconButton(
+      icon: const Icon(Icons.task_alt),
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        padding: const EdgeInsets.all(16.0),
+        primary: Colors.white,
+        backgroundColor: Colors.blue,
+        elevation: 9.0,
+        textStyle: const TextStyle(
+          fontSize: 20,
         ),
-        child: child);
+      ),
+    );
   }
 }
