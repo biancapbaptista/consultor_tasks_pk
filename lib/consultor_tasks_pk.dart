@@ -2,38 +2,80 @@ library consultor_tasks_pk;
 
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatefulWidget {
-  var onPressed;
-  final Widget child;
-  var style;
-  CustomButton(
-      {required Key key,
-      @required this.onPressed,
-      required this.child,
-      this.style})
-      : super(key: key);
-
-  @override
-  State<CustomButton> createState() => _CustomButtonState();
-}
-
-class _CustomButtonState extends State<CustomButton> {
-  Color _iconColor = Colors.green;
+class CustomBarWidget extends StatelessWidget {
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        leading: IconButton(
-      icon: Icon(Icons.star, color: _iconColor),
-      onPressed: () {
-        setState(() {
-          if (_iconColor == Colors.grey) {
-            _iconColor = Colors.green;
-          } else {
-            _iconColor = Colors.grey;
-          }
-        });
-      },
-    ));
+    return Scaffold(
+      key: _scaffoldKey,
+      body: Container(
+        height: 160.0,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              color: Colors.red,
+              width: MediaQuery.of(context).size.width,
+              height: 100.0,
+              child: const Center(
+                child: Text(
+                  "Home",
+                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 80.0,
+              left: 0.0,
+              right: 0.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1.0),
+                      border: Border.all(
+                          color: Colors.grey.withOpacity(0.5), width: 1.0),
+                      color: Colors.white),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.menu,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                      ),
+                      const Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: "Search",
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.search,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.notifications,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
